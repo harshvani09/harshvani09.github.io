@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhiteGrid | Designing Clarity, Delivering Impact</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background-color: #fafafa;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .contact-btn {
+            background: #000;
+            color: #fff;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: transform 0.2s;
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            text-align: center;
+            background: #fff;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            color: #666;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            line-height: 1.1;
+        }
+
+        .hero h1 .black {
+            color: #000;
+        }
+
+        .hero h1 .gray {
+            color: #999;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2.5rem;
+            max-width: 650px;
+            line-height: 1.6;
+        }
+
+        .primary-cta {
+            padding: 0.9rem 2rem;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .primary-cta:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            font-size: 0.9rem;
+            color: #666;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .hero-stats strong {
+            color: #000;
+            font-weight: 600;
+        }
+
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            color: #999;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .testimonial {
+            background: #fff;
+            padding: 3rem;
+            border-radius: 12px;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        .dots {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #000;
+        }
+
+        .services-intro {
+            margin-bottom: 3rem;
+        }
+
+        .services-intro h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .services-intro p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.4rem 0.8rem;
+            background: #f5f5f5;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .wins-section {
+            background: #fff;
+            padding: 5rem 5%;
+        }
+
+        .win-card {
+            background: #fafafa;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .win-icon {
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .win-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #000;
+        }
+
+        .win-meta {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 0.8rem;
+        }
+
+        .win-content p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .win-tags {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .case-study-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s;
+        }
+
+        .case-study-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .case-image {
+            width: 100%;
+            height: 220px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 3rem;
+        }
+
+        .case-content {
+            padding: 2rem;
+        }
+
+        .case-meta {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .case-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .case-content p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-metrics {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .metric {
+            flex: 1;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 6rem 5%;
+            background: #fff;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-black {
+            padding: 1rem 2rem;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-outline {
+            padding: 1rem 2rem;
+            background: transparent;
+            color: #000;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .small-text {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 1.5rem;
+        }
+
+        footer {
+            background: #fafafa;
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-column ul li a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #000;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .case-studies-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-container">
+            <span>W+</span>
+            <span>WhiteGrid</span>
+        </div>
+        <a href="#contact" class="contact-btn">Book a Call</a>
+    </nav>
+
+    <section class="hero">
+        <div class="badge">YOUR DESIGN PARTNER</div>
+        
+        <h1>
+            <span class="black">Designing Clarity,</span><br>
+            <span class="gray">Delivering Impact.</span>
+        </h1>
+        
+        <p class="hero-description">
+            We partner with ambitious startups and tech companies to create intuitive, impactful digital experiences that drive real business results.
+        </p>
+        
+        <a href="#work" class="primary-cta">
+            Watch the Case Studies →
+        </a>
+
+        <p class="hero-stats">
+            <strong>Boosted conversions by up to 3x</strong> for our clients.<br>
+            <strong>100% of our clients improved user connectivity</strong> in their startup team.
+        </p>
+    </section>
+
+    <section style="background: #fff;">
+        <div class="section-label">CLIENT IMPACT</div>
+        <h2 class="section-title">What our partners say</h2>
+        
+        <div class="testimonial">
+            <p class="testimonial-text">
+                "WhiteGrid transformed our product experience. Their attention to detail and understanding of our users was exceptional. We saw a 3x increase in user engagement within the first month."
+            </p>
+            <p class="testimonial-author">— Adi Das</p>
+        </div>
+
+        <div class="dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-label">WHAT WE DO</div>
+        
+        <div class="services-intro">
+            <h2>Services built for<br>product-led teams</h2>
+            <p>Strategic design services to help you move fast with confidence in your product decisions.</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>UI/UX Design</h3>
+                <p>Our goal is always the same: help users love your product, making their workflows easier and their jobs done better.</p>
+                <div class="service-tags">
+                    <span class="tag">User Research</span>
+                    <span class="tag">Wireframing</span>
+                    <span class="tag">Visual Design</span>
+                    <span class="tag">Prototyping</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📱</div>
+                <h3>Product Design</h3>
+                <p>End-to-end product design services to turn ideas into market-ready products with clear user value propositions.</p>
+                <div class="service-tags">
+                    <span class="tag">User Flows</span>
+                    <span class="tag">Design Systems</span>
+                    <span class="tag">Interaction Design</span>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>UX Audit</h3>
+                <p>Identify the bottlenecks in your product, helping you focus on what matters most to drive growth and conversion.</p>
+                <div class="service-tags">
+                    <span class="tag">Heuristic Analysis</span>
+                    <span class="tag">User Feedback</span>
+                    <span class="tag">Recommendations</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="wins-section">
+        <div class="section-label">TOP TIER</div>
+        <h2 class="section-title">Wins that matter</h2>
+        <p class="section-subtitle">Real results in numbers. See what we're really up to behind.</p>
+
+        <div class="win-card">
+            <div class="win-icon">⚡</div>
+            <div class="win-content">
+                <h4>Avo Rivera</h4>
+                <p class="win-meta">3M+ • 10K Likes</p>
+                <p>Completely transformed the way onboarding is done. We saw a significant improvement in Avo's onboarding flow which led to a 4x drop in the 5-day churn rate.</p>
+                <div class="win-tags">
+                    <span class="tag">SaaS</span>
+                    <span class="tag">+ 2.2M VISITS</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="section-label">CASE STUDIES</div>
+        <h2 class="section-title">Work that speaks<br>for itself</h2>
+        
+        <div style="text-align: right; margin-bottom: 2rem;">
+            <a href="#" style="color: #666; text-decoration: none; font-size: 0.9rem;">View All Works →</a>
+        </div>
+
+        <div class="case-studies-grid">
+            <div class="case-study-card">
+                <div class="case-image">📊</div>
+                <div class="case-content">
+                    <p class="case-meta">B2B SaaS • Fintech</p>
+                    <h3>Redesigning the future of financial finances</h3>
+                    <p>Streamlining financial workflows with a modern, intuitive interface that reduced task completion time.</p>
+                    <div class="case-metrics">
+                        <div class="metric">
+                            <div class="metric-value">+85%</div>
+                            <div class="metric-label">Efficiency</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">-48%</div>
+                            <div class="metric-label">Task Time</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study-card">
+                <div class="case-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">💼</div>
+                <div class="case-content">
+                    <p class="case-meta">B2B SaaS • HR</p>
+                    <h3>Enabling a design system from scratch</h3>
+                    <p>Building a comprehensive design system that improved consistency and development speed across teams.</p>
+                    <div class="case-metrics">
+                        <div class="metric">
+                            <div class="metric-value">+83%</div>
+                            <div class="metric-label">Speed</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">-39%</div>
+                            <div class="metric-label">Dev Time</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study-card">
+                <div class="case-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">🚀</div>
+                <div class="case-content">
+                    <p class="case-meta">B2B SaaS • Healthcare</p>
+                    <h3>Simplifying patient onboarding</h3>
+                    <p>Redesigning the patient intake process to reduce friction and improve completion rates significantly.</p>
+                    <div class="case-metrics">
+                        <div class="metric">
+                            <div class="metric-value">+60%</div>
+                            <div class="metric-label">Completion</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value">-21%</div>
+                            <div class="metric-label">Dropoff</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="section-label">LET'S GET STARTED</div>
+        <h2>Ready to transform<br>your product?</h2>
+        <p>Let's schedule a time to see if we're the right fit for your team. We're excited to learn about your goals and explore how we can help you deliver impact.</p>
+        
+        <div class="cta-buttons">
+            <a href="#" class="btn-black">Schedule a Call</a>
+            <a href="#" class="btn-outline">See Client Portal</a>
+        </div>
+        
+        <p class="small-text">No upfront payment • 7 days</p>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Process</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">UI/UX Design</a></li>
+                    <li><a href="#">Product Design</a></li>
+                    <li><a href="#">UX Audit</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#">Get in Touch</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div>
+                <span>W+</span>
+                <span> WhiteGrid</span>
+            </div>
+            <div>© 2024 WhiteGrid. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
